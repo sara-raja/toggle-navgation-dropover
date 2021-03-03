@@ -1,0 +1,170 @@
+html {
+	font-size: 62.5%;
+}
+
+/* mobile first css */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.6rem;
+    background-color: #192f5e;
+}
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Step 1: Style the default/ generic mobile view.*/
+
+header {
+	background-color: #fff;
+	padding: 2%;
+}
+
+header a {
+    color: #3f3f3f;
+    text-decoration: none;
+    display: block;
+    /*this allows the clickable area, to take up the full space of 
+    the li. so you dont have to click on the words specifically. */
+
+}
+
+
+.menu a:hover,
+.menu a:active {
+    background-color: gainsboro;
+    border-radius: 4px;
+}
+
+.toggle-btn {
+    border: none;
+    background-color: #fff;
+    outline: none;
+    /*"none" strips away the dots on the toggle menu..which basically allows
+    the user to select an item on screen.
+    "focus" allows visual feedback for keyboard navigation.
+    */
+}
+
+.toggle-btn:hover {
+    cursor: pointer;
+    /*this helps people recognize that this is a piece of navigation
+    and and object you can interact with.*/
+}
+
+svg rect {
+    fill: #3f3f3f;
+    /*Fill changes the color of an svg.*/
+}
+
+.menu li {
+    line-height: 4rem; /*lets the content:set the height of container*/
+    text-align: center;
+}
+
+/*Style to overlap the content below."Main-content."
+this container does not have a relatively positioned parent
+container.
+Because this container will be positioned absolutely.*/
+
+header nav {
+    position: absolute;
+    top: 6.6rem;
+    left: 0;
+    /*once an element is absolute, it will not inherit its BG colour
+    from its old parent. So you gotta add the bg colour again.*/
+    background-color: #ffffff;
+    width: 100vw; /*(aka 100% of viewport width)*/
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+}
+ul.menu{
+    padding-bottom: 1rem;
+}
+
+/*This is tp use the javascript for the toggle button.*/
+.show-nav {
+    max-height: 20rem;
+}
+
+/* ************************* section ****************** */
+section {
+    padding: 3.125rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+section p {
+    color: #d5e294;
+    border-bottom: 2px solid #d5e294;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: 1.777rem;
+}
+
+section h2,
+footer {
+    color: #fff;
+    font-size: 3.157rem;
+    margin-bottom: 2rem;
+}
+
+/*--- Footer --- */
+footer {
+	text-align: center;
+	position: -webkit-sticky;
+	position: sticky;
+}
+
+/*Gallery code*/
+
+.gallery {
+    
+} 
+
+@media only screen and (min-width: 520px) {
+        /*This hides the toggle button. Because we have enough space
+        to show the whole nav.*/
+        .toggle-btn {
+            display: none;
+        }
+        /*Be aware of mobile styling you have to reset to make the 
+        content behave as it would normally.*/
+        header nav {
+            max-height: 30rem;
+            position: static;
+        /*This resets the default back to static.*/
+            max-width: 60%;
+        /*Width was previously set to 100 vw. So we gott reset
+        the width*/
+            overflow: visible;
+        }
+
+        .menu,
+        header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        ul.menu li {
+            /*Flex grow increases the size of an element relative to 
+            other items that also have this attribute. basec on their 
+            value that you have set. Same with shrink.*/
+            flex-grow: 1;
+            /*Flex shrink is required to use flex-basis*/
+            flex-shrink: 0;
+            /*felx basis specifies the initial length of a flexible item.*/
+            flex-basis: auto;
+        }
+}
+
+@media only screen and (min-width: 1300px) {
+        /*This constrains the viewport on larger screens by center 
+        aligning the content.*/
+        header {
+            width: 1300px;
+            margin: 0 auto;
+        }
+    }
